@@ -8,17 +8,40 @@ App {
     //  * Remove the V-Play Splash Screen or set a custom one (available with the Pro Licenses)
     //  * Add plugins to monetize, analyze & improve your apps (available with the Pro Licenses)
     //licenseKey: "<generate one from http://v-play.net/licenseKey>"
+    Navigation {
+        id: navigation
+        drawer.drawerPosition: drawer.drawerPositionLeft
+        // headerView: NavHeader {} to add nice stuff or login information above and below the Navigation items.
+        // footerView: NavFooter {}
 
-    NavigationStack {
+        //this overrides the default mode of drawer on android and tabs elsewhere
+        //navigationMode: navigationModeTabsAndDrawer
+        NavigationItem {
+            title: "Home"
+            icon: IconType.home
 
-        Page {
-            title: qsTr("Tournament Manager")
-
-            Image {
-                source: "../assets/footbal.png"
-                anchors.centerIn: parent
+            NavigationStack {
+                WelcomePage {
+                }
             }
         }
+        NavigationItem {
+            title: "Tournament"
+            icon: IconType.soccerballo
 
+            NavigationStack {
+                WelcomePage {
+                }
+            }
+        }
+        NavigationItem {
+            title: "Players"
+            icon: IconType.users
+
+            NavigationStack {
+                WelcomePage {
+                }
+            }
+        }
     }
 }
