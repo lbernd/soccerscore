@@ -39,7 +39,7 @@ App {
             icon: IconType.users
 
             NavigationStack {
-                WelcomePage {
+                PlayersPage {
                 }
             }
         }
