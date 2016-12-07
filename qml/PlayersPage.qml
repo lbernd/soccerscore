@@ -14,6 +14,7 @@ PlayersPage {
 
 */
 Page {
+    id: page
 
     // button to add a player
     AppButton {
@@ -21,10 +22,15 @@ Page {
         anchors.horizontalCenter: parent.horizontalCenter
         text: "Add Player"
         onClicked: {
-            playersModel.append({
-                                    name: "Bernd",
-                                    team: "1337"
-                                })
+            InputDialog.inputTextSingleLine(page, qsTr("Add User"),
+                                            qsTr("Enter name..."),
+                                            function (ok, text) {
+                                                if (ok)
+                                                    playersModel.append({
+                                                                            name: text,
+                                                                            team: "none"
+                                                                        })
+                                            })
         }
     }
 
