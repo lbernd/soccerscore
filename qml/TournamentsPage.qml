@@ -11,14 +11,15 @@ Page {
         anchors.horizontalCenter: parent.horizontalCenter
         text: "Add Tournament"
         onClicked: {
-            InputDialog.inputTextSingleLine(tournamentsPage, qsTr("Add Tournament"),
+            InputDialog.inputTextSingleLine(tournamentsPage,
+                                            qsTr("Add Tournament"),
                                             qsTr("Enter name..."),
                                             function (ok, text) {
                                                 if (ok)
                                                     tournamentsModel.append({
-                                                                            name: text,
-                                                                            date: "none"
-                                                                        })
+                                                                                name: text,
+                                                                                date: "none"
+                                                                            })
                                             })
         }
     }
