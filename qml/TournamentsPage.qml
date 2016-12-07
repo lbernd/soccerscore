@@ -1,6 +1,9 @@
 import VPlayApps 1.0
 import QtQuick 2.0
 
+/*
+  Page contains tournament information. Options to delete and add tournaments.
+*/
 Page {
     id: tournamentsPage
     title: "Tournaments"
@@ -25,7 +28,7 @@ Page {
     }
 
     ListView {
-        id: playersListView
+        id: tournamentsListView
         anchors.top: addbutton.bottom
         anchors.bottom: parent.bottom
         width: parent.width

@@ -1,6 +1,9 @@
 import VPlayApps 1.0
 import QtQuick 2.0
 
+/*
+  App to manage players and tournaments for table football games.
+*/
 App {
     // You get free licenseKeys from http://v-play.net/licenseKey
     // With a licenseKey you can:

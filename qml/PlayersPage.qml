@@ -4,14 +4,7 @@ import QtQuick 2.0
 
 //import "./model"
 /*
-
-// EXAMPLE USAGE: import "playerModel" 1.0
-// add the following piece of code inside your App { } to display the List Page
-
-PlayersPage {
-
-}
-
+Page to show and manage players. Delete and adding of users is possible.
 */
 Page {
     id: page
