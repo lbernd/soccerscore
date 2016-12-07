@@ -15,6 +15,7 @@ PlayersPage {
 */
 Page {
     id: page
+    title: "Players"
 
     // button to add a player
     AppButton {
@@ -22,7 +23,7 @@ Page {
         anchors.horizontalCenter: parent.horizontalCenter
         text: "Add Player"
         onClicked: {
-            InputDialog.inputTextSingleLine(page, qsTr("Add User"),
+            InputDialog.inputTextSingleLine(page, qsTr("Add Player"),
                                             qsTr("Enter name..."),
                                             function (ok, text) {
                                                 if (ok)

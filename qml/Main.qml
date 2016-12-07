@@ -30,7 +30,7 @@ App {
             icon: IconType.soccerballo
 
             NavigationStack {
-                WelcomePage {
+                TournamentsPage {
                 }
             }
         }
