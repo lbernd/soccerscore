@@ -47,6 +47,7 @@ ListView {
             team: "42"
         }
     }
+
     //    section.property: "name"
     delegate: SwipeOptionsContainer {
         id: container
@@ -70,16 +71,9 @@ ListView {
             backgroundColor: "red"
             height: row.height
             onClicked: {
-
-                //TODO: currentIndex and Item does not update.
-                playerModel.remove(playersPage.currentIndex)
-                //playersPage.currentItem.deleteLater()
-                //            playerModel.remove()
-                //          row.item.name = "Option clicked"
-                //          row.itemChanged()
-
+                playerModel.remove(index)
                 //hide left option when clicked
-                container.hideOptions()
+                //container.hideOptions()
             }
         }
 
