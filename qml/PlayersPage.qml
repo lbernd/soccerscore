@@ -5,7 +5,7 @@ import QtQuick 2.0
 //import "./model"
 /*
 
-// EXAMPLE USAGE: import "PlayerModel" 1.0
+// EXAMPLE USAGE: import "playerModel" 1.0
 // add the following piece of code inside your App { } to display the List Page
 
 PlayersPage {
@@ -14,15 +14,31 @@ PlayersPage {
 
 */
 Page {
+
+    // button to add a player
+    AppButton {
+        id: addbutton
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: "Add Player"
+        onClicked: {
+            playersModel.append({
+                                    name: "Bernd",
+                                    team: "1337"
+                                })
+        }
+    }
+
     ListView {
-        id: playersPage
-        anchors.fill: parent
-        //    property var data: playerModel
+        id: playersListView
+        anchors.top: addbutton.bottom
+        anchors.bottom: parent.bottom
+        width: parent.width
+        //    property var data: playersModel
         // TODO seperate model data.
-        model: playerModel
+        model: playersModel
 
         ListModel {
-            id: playerModel
+            id: playersModel
             ListElement {
                 name: "Bernd"
                 team: "1337"
@@ -72,7 +88,7 @@ Page {
                 backgroundColor: "red"
                 height: row.height
                 onClicked: {
-                    playerModel.remove(index)
+                    playersModel.remove(index)
                     //hide left option when clicked
                     //container.hideOptions()
                 }
