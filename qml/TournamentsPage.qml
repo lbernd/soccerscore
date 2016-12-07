@@ -6,13 +6,13 @@ import QtQuick 2.0
 */
 Page {
     id: tournamentsPage
-    title: "Tournaments"
+    title: qsTr("Tournaments")
 
     // button to add a tournaments
     AppButton {
         id: addbutton
         anchors.horizontalCenter: parent.horizontalCenter
-        text: "Add Tournament"
+        text: qsTr("Add Tournament")
         onClicked: {
             InputDialog.inputTextSingleLine(tournamentsPage,
                                             qsTr("Add Tournament"),
@@ -62,7 +62,7 @@ Page {
 
             //left swipe option (when swiping list item to right)
             leftOption: SwipeButton {
-                text: "Delete"
+                text: qsTr("Delete")
                 icon: IconType.trash
                 backgroundColor: "red"
                 height: row.height

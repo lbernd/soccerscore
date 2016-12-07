@@ -6,7 +6,7 @@ import QtQuick 2.0
 
 */
 Page {
-    title: "Welcome"
+    title: qsTr("Welcome")
     Image {
         source: "../assets/footbal.png"
         anchors.centerIn: parent

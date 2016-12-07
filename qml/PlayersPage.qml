@@ -8,13 +8,13 @@ Page to show and manage players. Delete and adding of users is possible.
 */
 Page {
     id: page
-    title: "Players"
+    title: qsTr("Players")
 
     // button to add a player
     AppButton {
         id: addbutton
         anchors.horizontalCenter: parent.horizontalCenter
-        text: "Add Player"
+        text: qsTr("Add Player")
         onClicked: {
             InputDialog.inputTextSingleLine(page, qsTr("Add Player"),
                                             qsTr("Enter name..."),
@@ -81,7 +81,7 @@ Page {
 
             //left swipe option (when swiping list item to right)
             leftOption: SwipeButton {
-                text: "Delete"
+                text: qsTr("Delete")
                 icon: IconType.trash
                 backgroundColor: "red"
                 height: row.height

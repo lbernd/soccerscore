@@ -20,7 +20,7 @@ App {
         //this overrides the default mode of drawer on android and tabs elsewhere
         //navigationMode: navigationModeTabsAndDrawer
         NavigationItem {
-            title: "Home"
+            title: qsTr("Home")
             icon: IconType.home
 
             NavigationStack {
@@ -29,7 +29,7 @@ App {
             }
         }
         NavigationItem {
-            title: "Tournament"
+            title: qsTr("Tournament")
             icon: IconType.soccerballo
 
             NavigationStack {
@@ -38,7 +38,7 @@ App {
             }
         }
         NavigationItem {
-            title: "Players"
+            title: qsTr("Players")
             icon: IconType.users
 
             NavigationStack {
