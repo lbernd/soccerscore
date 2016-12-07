@@ -71,8 +71,6 @@ Page {
                 team: "42"
             }
         }
-
-        //    section.property: "name"
         delegate: SwipeOptionsContainer {
             id: container
             height: row.height
@@ -100,21 +98,6 @@ Page {
                     //container.hideOptions()
                 }
             }
-
-            //      //right swipe option (when swiping list item to left)
-            //      rightOption: AppActivityIndicator {
-            //        width: row.height
-            //        anchors.centerIn: parent
-            //      }
-
-            //      //hide right option after timer finishes
-            //      onRightOptionShown: hideTimer.start()
-
-            //      property Timer hideTimer: Timer {
-            //        running: false
-            //        interval: 1000
-            //        onTriggered: container.hideOptions()
-            //      }
         }
     }
 }
