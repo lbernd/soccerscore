@@ -1,14 +1,17 @@
 import VPlayApps 1.0
+import VPlay 2.0
 import QtQuick 2.0
 
 
 //import "./model"
 /*
-Page to show and manage players. Delete and adding of users is possible.
+Page to show and manage players. Delete and adding of users is possible user are stored persistently.
 */
 Page {
     id: page
     title: qsTr("Players")
+
+    Component.onCompleted: myStorage.initPlayers()
 
     // button to add a player
     AppButton {
@@ -20,11 +23,58 @@ Page {
                                             qsTr("Enter name..."),
                                             function (ok, text) {
                                                 if (ok)
-                                                    playersModel.append({
-                                                                            name: text,
-                                                                            team: "none"
-                                                                        })
+                                                    addPlayer({
+                                                                  name: text,
+                                                                  team: "none"
+                                                              })
                                             })
+        }
+    }
+    /* Adds player to player list and updates Storage.*/
+    function addPlayer(player) {
+        //jsobject player
+        playersModel.append(player)
+        console.debug("AddedPlayer....")
+        myStorage.updatePlayers()
+    }
+    Storage {
+        id: myStorage
+        property string playerStorageKey: "PlayerStorageV0.1"
+
+        //this is JS probably data managent should be done somewhere else.
+        /*Updates stored player information.*/
+        function updatePlayers() {
+            for (var i = 0; i < playersModel.count; i++) {
+                //id probably not necessary because id Info is atm stored in storage key.
+                myStorage.setValue(playerStorageKey + "P" + i, {
+                                       id: i,
+                                       name: playersModel.get(i).name,
+                                       team: playersModel.get(i).team
+                                   })
+                console.debug(playerStorageKey + "P" + i)
+            }
+            //Set number of players. No idea if playersModel.count can change in the meantime.
+            myStorage.setValue(playerStorageKey + "P", playersModel.count)
+        }
+        /*Reads players from localStorage and adds it to the model.*/
+        function initPlayers() {
+            //Read the number of players from Storage.
+            var numberOfPlayers = myStorage.getValue(playerStorageKey + "P")
+            if (numberOfPlayers) {
+                //numberOfPlayers is not 0
+                console.debug("Load players...")
+                //callback usage possible for slow or online storage.
+                for (var i = 0; i < numberOfPlayers; i++) {
+                    var player = myStorage.getValue(playerStorageKey + "P" + i)
+                    playersModel.append({
+                                            name: player.name,
+                                            team: player.team
+                                        })
+                }
+            } else {
+                //0 players or not defined(first run)
+                console.debug("No players stored")
+            }
         }
     }
 
@@ -39,30 +89,6 @@ Page {
 
         ListModel {
             id: playersModel
-            ListElement {
-                name: "Bernd"
-                team: "1337"
-            }
-            ListElement {
-                name: "Chris"
-                team: "1337"
-            }
-            ListElement {
-                name: "Jane"
-                team: "Rocket"
-            }
-            ListElement {
-                name: "Victor"
-                team: "Rocket"
-            }
-            ListElement {
-                name: "Wane"
-                team: "42"
-            }
-            ListElement {
-                name: "Franz"
-                team: "42"
-            }
         }
         delegate: SwipeOptionsContainer {
             id: container
@@ -87,6 +113,7 @@ Page {
                 height: row.height
                 onClicked: {
                     playersModel.remove(index)
+                    myStorage.updatePlayers()
                     //hide left option when clicked
                     //container.hideOptions()
                 }
