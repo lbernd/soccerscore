@@ -1,9 +1,11 @@
 import VPlayApps 1.0
+import VPlay 2.0
 import QtQuick 2.0
+
 
 /*
   App to manage players and tournaments for table football games.
-*/
+    */
 App {
     // You get free licenseKeys from http://v-play.net/licenseKey
     // With a licenseKey you can:
@@ -11,6 +13,27 @@ App {
     //  * Remove the V-Play Splash Screen or set a custom one (available with the Pro Licenses)
     //  * Add plugins to monetize, analyze & improve your apps (available with the Pro Licenses)
     //licenseKey: "<generate one from http://v-play.net/licenseKey>"
+    id: theApp
+
+    property bool applicationFirstRun: false
+
+    Storage {
+        id: myStorage
+
+        Component.onCompleted: {
+            //secondRun logic
+            var secondRun = "wtkljaw34jtaw34zlkjw34el"
+            var isSecondRun = myStorage.getValue(secondRun)
+            if (isSecondRun === undefined) {
+                // if undefined is returned, this means the app was not started before
+                applicationFirstRun = true
+                console.debug("First Run")
+                // now the application was started at least once, so set the flag to true
+                myStorage.setValue(secondRun, true)
+            }
+        }
+    }
+
     Navigation {
         id: navigation
         drawer.drawerPosition: drawer.drawerPositionLeft
