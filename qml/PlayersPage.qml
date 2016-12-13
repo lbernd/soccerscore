@@ -73,7 +73,14 @@ Page {
                 }
             } else {
                 //0 players or not defined(first run)
-                console.debug("No players stored")
+                if (theApp.applicationFirstRun) {
+                    PlayersPage.addPlayer({
+                                              name: "Bernd",
+                                              team: "1337"
+                                          })
+                } else {
+                    console.debug("No players stored")
+                }
             }
         }
     }
