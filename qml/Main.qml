@@ -18,18 +18,18 @@ App {
     property bool applicationFirstRun: false
 
     Storage {
-        id: myStorage
+        id: appStorage
 
         Component.onCompleted: {
             //secondRun logic
             var secondRun = "wtkljaw34jtaw34zlkjw34el"
-            var isSecondRun = myStorage.getValue(secondRun)
+            var isSecondRun = appStorage.getValue(secondRun)
             if (isSecondRun === undefined) {
                 // if undefined is returned, this means the app was not started before
                 applicationFirstRun = true
                 console.debug("First Run")
                 // now the application was started at least once, so set the flag to true
-                myStorage.setValue(secondRun, true)
+                appStorage.setValue(secondRun, true)
             }
         }
     }

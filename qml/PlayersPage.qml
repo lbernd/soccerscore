@@ -8,7 +8,7 @@ import QtQuick 2.0
 Page to show and manage players. Delete and adding of users is possible user are stored persistently.
 */
 Page {
-    id: page
+    id: playersPage
     title: qsTr("Players")
 
     Component.onCompleted: myStorage.initPlayers()
