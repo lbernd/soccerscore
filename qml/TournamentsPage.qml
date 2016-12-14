@@ -12,22 +12,22 @@ Page {
 
     Component.onCompleted: myStorage.initTournaments()
 
-    // button to add a tournaments
-    AppButton {
-        id: addbutton
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: qsTr("Add Tournament")
-        onClicked: {
-            InputDialog.inputTextSingleLine(tournamentsPage,
-                                            qsTr("Add Tournament"),
-                                            qsTr("Enter name..."),
-                                            function (ok, text) {
-                                                if (ok)
-                                                    tournamentsModel.append({
-                                                                                name: text,
-                                                                                date: "none"
-                                                                            })
-                                            })
+    // button to add a tournament
+    rightBarItem: NavigationBarRow {
+        IconButtonBarItem {
+            icon: IconType.plus
+            //not used atm see https://v-play.net/doc/vplayapps-navigationbaritem/#title-prop
+            title: qsTr("Add Tournament")
+            onClicked: InputDialog.inputTextSingleLine(page,
+                                                       qsTr("Add Tournament"),
+                                                       qsTr("Enter name..."),
+                                                       function (ok, text) {
+                                                           if (ok)
+                                                               addTournament({
+                                                                                           name: text,
+                                                                                           date: "none"
+                                                                                       })
+                                                       })
         }
     }
     function addTournament(tournament) {
@@ -92,9 +92,7 @@ Page {
 
     ListView {
         id: tournamentsListView
-        anchors.top: addbutton.bottom
-        anchors.bottom: parent.bottom
-        width: parent.width
+        anchors.fill: parent
         // TODO seperate model data.
         model: tournamentsModel
 

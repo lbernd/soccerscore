@@ -14,20 +14,21 @@ Page {
     Component.onCompleted: myStorage.initPlayers()
 
     // button to add a player
-    AppButton {
-        id: addbutton
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: qsTr("Add Player")
-        onClicked: {
-            InputDialog.inputTextSingleLine(page, qsTr("Add Player"),
-                                            qsTr("Enter name..."),
-                                            function (ok, text) {
-                                                if (ok)
-                                                    addPlayer({
-                                                                  name: text,
-                                                                  team: "none"
-                                                              })
-                                            })
+    rightBarItem: NavigationBarRow {
+        IconButtonBarItem {
+            icon: IconType.plus
+            //not used atm see https://v-play.net/doc/vplayapps-navigationbaritem/#title-prop
+            title: qsTr("Add Player")
+            onClicked: InputDialog.inputTextSingleLine(page,
+                                                       qsTr("Add Player"),
+                                                       qsTr("Enter name..."),
+                                                       function (ok, text) {
+                                                           if (ok)
+                                                               addPlayer({
+                                                                             name: text,
+                                                                             team: "none"
+                                                                         })
+                                                       })
         }
     }
     /* Adds player to player list and updates Storage.*/
@@ -87,9 +88,7 @@ Page {
 
     ListView {
         id: playersListView
-        anchors.top: addbutton.bottom
-        anchors.bottom: parent.bottom
-        width: parent.width
+        anchors.fill: parent
         //    property var data: playersModel
         // TODO seperate model data.
         model: playersModel
